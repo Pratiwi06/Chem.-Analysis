@@ -193,28 +193,45 @@ with tab4:
 
     # Pilih jenis konversi
     conversion_type = st.selectbox("Pilih jenis konversi:", ["Suhu", "Tekanan", "Volume", "Massa", "Konsentrasi"])
-
+    
     if conversion_type == "Suhu":
         st.subheader("Konversi Suhu")
         temp_value = st.number_input("Masukkan nilai suhu:")
-        temp_unit = st.selectbox("Pilih satuan suhu:", ["Celsius", "Fahrenheit", "Kelvin"])
+        temp_unit = st.selectbox("Pilih satuan suhu:", ["Celsius", "Fahrenheit", "Kelvin", "Reamur"])
 
-        if st.button("Konversi"):
-            if temp_unit == "Celsius":
-                fahrenheit = (temp_value * 9/5) + 32
-                kelvin = temp_value + 273.15
-                st.success(f"{temp_value} °C = {fahrenheit:.2f} °F")
-                st.success(f"{temp_value} °C = {kelvin:.2f} K")
-            elif temp_unit == "Fahrenheit":
-                celsius = (temp_value - 32) * 5/9
-                kelvin = celsius + 273.15
-                st.success(f"{temp_value} °F = {celsius:.2f} °C")
-                st.success(f"{temp_value} °F = {kelvin:.2f} K")
-            elif temp_unit == "Kelvin":
-                celsius = temp_value - 273.15
-                fahrenheit = (celsius * 9/5) + 32
-                st.success(f"{temp_value} K = {celsius:.2f} °C")
-                st.success(f"{temp_value} K = {fahrenheit:.2f} °F")
+    if st.button("Konversi"):
+        if temp_unit == "Celsius":
+            fahrenheit = (temp_value * 9/5) + 32
+            kelvin = temp_value + 273.15
+            reamur = temp_value * 4/5
+            st.success(f"{temp_value} °C = {fahrenheit:.1f} °F")
+            st.success(f"{temp_value} °C = {kelvin:.1f} K")
+            st.success(f"{temp_value} °C = {reamur:.1f} °Ré")
+
+        elif temp_unit == "Fahrenheit":
+            celsius = (temp_value - 32) * 5/9
+            kelvin = celsius + 273.15
+            reamur = celsius * 4/5
+            st.success(f"{temp_value} °F = {celsius:.1f} °C")
+            st.success(f"{temp_value} °F = {kelvin:.1f} K")
+            st.success(f"{temp_value} °F = {reamur:.1f} °Ré")
+
+        elif temp_unit == "Kelvin":
+            celsius = temp_value - 273.15
+            fahrenheit = (celsius * 9/5) + 32
+            reamur = celsius * 4/5
+            st.success(f"{temp_value} K = {celsius:.1f} °C")
+            st.success(f"{temp_value} K = {fahrenheit:.1f} °F")
+            st.success(f"{temp_value} K = {reamur:.1f} °Ré")
+
+        elif temp_unit == "Reamur":
+            celsius = temp_value * 5/4
+            fahrenheit = (celsius * 9/5) + 32
+            kelvin = celsius + 273.15
+            st.success(f"{temp_value} °Ré = {celsius:.1f} °C")
+            st.success(f"{temp_value} °Ré = {fahrenheit:.1f} °F")
+            st.success(f"{temp_value} °Ré = {kelvin:.1f} K")
+
 
     elif conversion_type == "Tekanan":
     st.subheader("Konversi Tekanan")
